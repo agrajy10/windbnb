@@ -3,11 +3,14 @@ import './css/main.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import StaysGrid from './components/StaysGrid';
+import SearchModal from './components/SearchModal';
+import SearchForm from './components/SearchForm';
 
 function App() {
   const [stays, setStays] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchStays = async () => {
@@ -27,7 +30,7 @@ function App() {
 
   return (
     <div className="max-w-7xl mx-auto px-3">
-      <Header />
+      <Header openModal={() => setIsOpen(true)} />
 
       <main className="py-4 md:py-14">
         <div className="flex items-center justify-between gap-4 mb-9">
@@ -49,6 +52,9 @@ function App() {
       </main>
 
       <Footer />
+      <SearchModal open={isOpen} onClose={() => setIsOpen(false)}>
+        <SearchForm />
+      </SearchModal>
     </div>
   );
 }
