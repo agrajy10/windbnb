@@ -1,9 +1,12 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import AppContext from '../context/context';
 
-function SearchDrawerBtn({ openModal }) {
+function SearchDrawerBtn() {
+  const { dispatch } = useContext(AppContext);
+
   return (
     <button
-      onClick={openModal}
+      onClick={() => dispatch({ type: 'OPEN_MODAL' })}
       className="bg-white rounded-2xl text-sm text-center leading-none font-medium shadow w-full max-w-xs sm:mx-0 mx-auto flex items-center justify-start">
       <span className="text-zinc-400 flex-1 border-r border-r-gray-100 py-4">Add location</span>
       <span className="text-zinc-400 flex-1 border-r border-r-gray-100 py-4">Add guests</span>
@@ -24,9 +27,5 @@ function SearchDrawerBtn({ openModal }) {
     </button>
   );
 }
-
-SearchDrawerBtn.propTypes = {
-  openModal: PropTypes.func
-};
 
 export default SearchDrawerBtn;
