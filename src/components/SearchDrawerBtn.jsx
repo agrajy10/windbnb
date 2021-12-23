@@ -1,6 +1,6 @@
 function SearchDrawerBtn() {
   return (
-    <button className="bg-white rounded-2xl text-sm text-center leading-none font-medium shadow w-80 flex items-center justify-start">
+    <button className="bg-white rounded-2xl text-sm text-center leading-none font-medium shadow w-full max-w-xs sm:mx-0 mx-auto flex items-center justify-start">
       <span className="text-zinc-400 flex-1 border-r border-r-gray-100 py-4">Add location</span>
       <span className="text-zinc-400 flex-1 border-r border-r-gray-100 py-4">Add guests</span>
       <span className="w-14 flex-shrink-0">
