@@ -8,7 +8,7 @@ function SearchForm() {
   return (
     <>
       <div className="md:flex md:items-center md:justify-start md:gap-4 md:mb-11">
-        <div className="md:flex-grow bg-white rounde-tl-2xl rounded-tr-2xl md:rounded-2xl shadow leading-none py-3 px-6">
+        <div className="md:flex-1 bg-white rounde-tl-2xl rounded-tr-2xl md:rounded-2xl shadow leading-none py-3 px-6">
           <span className="block mb-1 font-extrabold text-[0.5625rem] uppercase text-zinc-800">
             Location
           </span>
@@ -18,7 +18,7 @@ function SearchForm() {
             <span className="text-sm text-zinc-400">Add location</span>
           )}
         </div>
-        <div className="md:flex-grow bg-white rounded-bl-2xl rounded-br-2xl md:rounded-2xl shadow leading-none py-3 px-6 mb-9 md:mb-0">
+        <div className="md:flex-1 bg-white rounded-bl-2xl rounded-br-2xl md:rounded-2xl shadow leading-none py-3 px-6 mb-9 md:mb-0">
           <span className="block mb-1 font-extrabold text-[0.5625rem] uppercase text-zinc-800">
             Guests
           </span>
