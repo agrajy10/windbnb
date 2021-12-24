@@ -7,7 +7,7 @@ function SearchModal({ children, open, onClose }) {
   return createPortal(
     <>
       <div className="fixed inset-0 bg-zinc-800 bg-opacity-40 z-20"></div>
-      <div className="fixed top-0 left-0 bg-white pt-11 pb-20 md:py-16 lg:py-24 z-50 w-full">
+      <div className="fixed top-0 left-0 bg-white py-11 md:py-16 lg:py-24 z-50 w-full">
         <button
           onClick={onClose}
           className="w-7 h-7 inline-flex items-center justify-center absolute top-2 right-3">

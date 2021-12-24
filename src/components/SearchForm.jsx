@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import LocationsList from './LocationsList';
 import AppContext from '../context/context';
 import { filterStays } from '../actions/actions';
+import AdultsCounter from './AdultsCounter';
+import ChildrenCounter from './ChildrenCounter';
 
 function SearchForm() {
   const { stays, adults, children, city, country, isLocationsOpen, isGuestsOpen, dispatch } =
@@ -58,7 +60,7 @@ function SearchForm() {
               type: 'CLOSE_MODAL'
             });
           }}
-          className=" absolute bottom-4 md:left-0 md:translate-x-0 left-2/4 -translate-x-2/4 md:static md:flex-shrink-0 w-32 h-12 inline-flex items-center justify-center rounded-2xl bg-red-500 hover:bg-red-600 transition text-white text-sm font-medium">
+          className="absolute bottom-0 md:left-0 md:translate-x-0 left-2/4 -translate-x-2/4 md:static md:flex-shrink-0 w-32 h-12 inline-flex items-center justify-center rounded-2xl bg-red-500 hover:bg-red-600 transition text-white text-sm font-medium">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -79,119 +81,31 @@ function SearchForm() {
         <div className="flex-1 md:space-y-9 space-y-7">
           {isGuestsOpen && (
             <>
-              <div>
-                <label
-                  htmlFor="adults_count"
-                  className="block leading-none font-semibold text-sm text-zinc-800">
-                  Adults
-                </label>
-                <span className="text-zinc-300 text-sm mb-3 block">Ages 13 or above</span>
-                <div className="flex items-center justify-start">
-                  <button
-                    onClick={() => dispatch({ type: 'INCREASE_ADULTS' })}
-                    type="button"
-                    className="w-6 h-6 border border-zinc-400 text-zinc-700 rounded bg-white inline-flex items-center justify-center hover:bg-zinc-700 hover:text-white">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 4v16m8-8H4"
-                      />
-                    </svg>
-                  </button>
-                  <input
-                    value={adults}
-                    type="text"
-                    id="adults_count"
-                    className="text-center w-14 h-6 focus:outline-none"
-                    readOnly
-                  />
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (adults) {
-                        dispatch({ type: 'DECREASE_ADULTS' });
-                      }
-                    }}
-                    className="w-6 h-6 border border-zinc-400 text-zinc-700 rounded bg-white inline-flex items-center justify-center hover:bg-zinc-700 hover:text-white">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M20 12H4"
-                      />
-                    </svg>
-                  </button>
-                </div>
+              <div className="pl-6">
+                <AdultsCounter
+                  value={adults}
+                  increaseFunc={() => dispatch({ type: 'INCREASE_ADULTS' })}
+                  descreaseFunc={() => {
+                    if (adults) {
+                      dispatch({
+                        type: 'DECREASE_ADULTS'
+                      });
+                    }
+                  }}
+                />
               </div>
-              <div>
-                <label
-                  htmlFor="children_count"
-                  className="block leading-none font-semibold text-sm text-zinc-800">
-                  Children
-                </label>
-                <span className="text-zinc-300 text-sm mb-3 block">Ages 2-12</span>
-                <div className="flex items-center justify-start">
-                  <button
-                    type="button"
-                    onClick={() => dispatch({ type: 'INCREASE_CHILDREN' })}
-                    className="w-6 h-6 border border-zinc-400 text-zinc-700 rounded bg-white inline-flex items-center justify-center hover:bg-zinc-700 hover:text-white">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 4v16m8-8H4"
-                      />
-                    </svg>
-                  </button>
-                  <input
-                    value={children}
-                    type="text"
-                    id="children_count"
-                    className="text-center w-14 h-6 focus:outline-none"
-                    readOnly
-                  />
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (children) {
-                        dispatch({ type: 'DECREASE_CHILDREN' });
-                      }
-                    }}
-                    className="w-6 h-6 border border-zinc-400 text-zinc-700 rounded bg-white inline-flex items-center justify-center hover:bg-zinc-700 hover:text-white">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M20 12H4"
-                      />
-                    </svg>
-                  </button>
-                </div>
+              <div className="pl-6">
+                <ChildrenCounter
+                  value={children}
+                  increaseFunc={() => dispatch({ type: 'INCREASE_CHILDREN' })}
+                  descreaseFunc={() => {
+                    if (children) {
+                      dispatch({
+                        type: 'DECREASE_CHILDREN'
+                      });
+                    }
+                  }}
+                />
               </div>
             </>
           )}

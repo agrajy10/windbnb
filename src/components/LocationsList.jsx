@@ -15,7 +15,7 @@ function LocationsList() {
     }
   }
   return (
-    <ul className="flex-grow text-sm text-zinc-700 space-y-6 md:space-y-9">
+    <ul className="pl-6 text-sm text-zinc-700 space-y-6 md:space-y-9">
       {!isLoading &&
         locations.map((location, index) => <LocationsListItem key={index} {...location} />)}
     </ul>
