@@ -20,6 +20,8 @@ const reducer = (state, action) => {
       return { ...state, isLocationsOpen: true, isGuestsOpen: false };
     case 'OPEN_GUESTS':
       return { ...state, isLocationsOpen: false, isGuestsOpen: true };
+    case 'SET_FILTERED_STAYS':
+      return { ...state, filteredStays: action.payload };
     default:
       return state;
   }

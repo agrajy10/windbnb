@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import LocationsList from './LocationsList';
 import AppContext from '../context/context';
+import { filterStays } from '../actions/actions';
 
 function SearchForm() {
-  const { adults, children, city, country, isLocationsOpen, isGuestsOpen, dispatch } =
+  const { stays, adults, children, city, country, isLocationsOpen, isGuestsOpen, dispatch } =
     useContext(AppContext);
 
   return (
@@ -47,6 +48,16 @@ function SearchForm() {
         </div>
         <button
           type="button"
+          onClick={() => {
+            const result = filterStays(stays, city, country, adults, children);
+            dispatch({
+              type: 'SET_FILTERED_STAYS',
+              payload: result
+            });
+            dispatch({
+              type: 'CLOSE_MODAL'
+            });
+          }}
           className=" absolute bottom-4 md:left-0 md:translate-x-0 left-2/4 -translate-x-2/4 md:static md:flex-shrink-0 w-32 h-12 inline-flex items-center justify-center rounded-2xl bg-red-500 hover:bg-red-600 transition text-white text-sm font-medium">
           <svg
             xmlns="http://www.w3.org/2000/svg"

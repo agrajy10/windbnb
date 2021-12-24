@@ -6,6 +6,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const initialState = {
     stays: [],
+    filteredStays: [],
     isLoading: true,
     error: '',
     isModalOpen: false,
