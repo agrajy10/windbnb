@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Stay from './Stay';
 
 function StaysGrid({ stays }) {
@@ -9,5 +10,9 @@ function StaysGrid({ stays }) {
     </section>
   );
 }
+
+StaysGrid.propTypes = {
+  stays: PropTypes.array
+};
 
 export default StaysGrid;

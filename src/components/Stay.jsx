@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Ratings from './Ratings';
 
 function Stay({ superHost, title, rating, type, photo }) {
@@ -19,5 +20,13 @@ function Stay({ superHost, title, rating, type, photo }) {
     </article>
   );
 }
+
+Stay.propTypes = {
+  superHost: PropTypes.bool,
+  title: PropTypes.string,
+  rating: PropTypes.number,
+  type: PropTypes.string,
+  photo: PropTypes.string
+};
 
 export default Stay;

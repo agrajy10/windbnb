@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 
 function SearchModal({ children, open, onClose }) {
@@ -31,5 +32,11 @@ function SearchModal({ children, open, onClose }) {
     document.getElementById('searchModal')
   );
 }
+
+SearchModal.propTypes = {
+  children: PropTypes.node,
+  open: PropTypes.bool,
+  onClose: PropTypes.func
+};
 
 export default SearchModal;

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Ratings({ ratings }) {
   return (
     <>
@@ -13,5 +15,9 @@ function Ratings({ ratings }) {
     </>
   );
 }
+
+Ratings.propTypes = {
+  ratings: PropTypes.number
+};
 
 export default Ratings;
