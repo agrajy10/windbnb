@@ -8,7 +8,11 @@ export const AppProvider = ({ children }) => {
     stays: [],
     isLoading: true,
     error: '',
-    isModalOpen: false
+    isModalOpen: false,
+    adults: 0,
+    children: 0,
+    city: '',
+    country: ''
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 

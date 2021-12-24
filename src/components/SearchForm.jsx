@@ -1,4 +1,10 @@
+import { useContext } from 'react';
+import LocationsList from './LocationsList';
+import AppContext from '../context/context';
+
 function SearchForm() {
+  const { adults, children, city, country, dispatch } = useContext(AppContext);
+
   return (
     <>
       <div className="md:flex md:items-center md:justify-start md:gap-4 md:mb-11">
@@ -6,13 +12,21 @@ function SearchForm() {
           <span className="block mb-1 font-extrabold text-[0.5625rem] uppercase text-zinc-800">
             Location
           </span>
-          <span className="text-sm text-zinc-400">Add location</span>
+          {city && country ? (
+            <span className="text-sm text-zinc-800">{`${city}, ${country}`}</span>
+          ) : (
+            <span className="text-sm text-zinc-400">Add location</span>
+          )}
         </div>
         <div className="md:flex-grow bg-white rounded-bl-2xl rounded-br-2xl md:rounded-2xl shadow leading-none py-3 px-6 mb-9 md:mb-0">
           <span className="block mb-1 font-extrabold text-[0.5625rem] uppercase text-zinc-800">
             Guests
           </span>
-          <span className="text-sm text-zinc-400">Add guests</span>
+          {adults + children ? (
+            <span className="text-sm text-zinc-800">{adults + children}</span>
+          ) : (
+            <span className="text-sm text-zinc-400">Add guests</span>
+          )}
         </div>
         <button
           type="button"
@@ -33,50 +47,9 @@ function SearchForm() {
         </button>
       </div>
       <div className="md:flex md:items-start md:justify-start md:gap-4 md:min-h-0 min-h-[20rem]">
-        <ul className="flex-grow text-sm text-zinc-700 space-y-6 md:space-y-9">
-          <li className="flex items-center justify-start gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 stroke-zinc-700"
-              fill="none"
-              viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
-            Helsinki, Finland
-          </li>
-          <li className="flex items-center justify-start gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 stroke-zinc-700"
-              fill="none"
-              viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
-            Helsinki, Finland
-          </li>
-        </ul>
+        <div className="flex-grow">
+          <LocationsList />
+        </div>
         <div className="flex-grow md:space-y-9 space-y-7">
           <div>
             <label
@@ -87,6 +60,7 @@ function SearchForm() {
             <span className="text-zinc-300 text-sm mb-3 block">Ages 13 or above</span>
             <div className="flex items-center justify-start">
               <button
+                onClick={() => dispatch({ type: 'INCREASE_ADULTS' })}
                 type="button"
                 className="w-6 h-6 border border-zinc-400 text-zinc-700 rounded bg-white inline-flex items-center justify-center hover:bg-zinc-700 hover:text-white">
                 <svg
@@ -103,9 +77,20 @@ function SearchForm() {
                   />
                 </svg>
               </button>
-              <input type="text" id="adults_count" className="text-center w-14 h-6" />
+              <input
+                value={adults}
+                type="text"
+                id="adults_count"
+                className="text-center w-14 h-6"
+                readOnly
+              />
               <button
                 type="button"
+                onClick={() => {
+                  if (adults) {
+                    dispatch({ type: 'DECREASE_ADULTS' });
+                  }
+                }}
                 className="w-6 h-6 border border-zinc-400 text-zinc-700 rounded bg-white inline-flex items-center justify-center hover:bg-zinc-700 hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -128,6 +113,7 @@ function SearchForm() {
             <div className="flex items-center justify-start">
               <button
                 type="button"
+                onClick={() => dispatch({ type: 'INCREASE_CHILDREN' })}
                 className="w-6 h-6 border border-zinc-400 text-zinc-700 rounded bg-white inline-flex items-center justify-center hover:bg-zinc-700 hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -143,9 +129,20 @@ function SearchForm() {
                   />
                 </svg>
               </button>
-              <input type="text" id="children_count" className="text-center w-14 h-6" />
+              <input
+                value={children}
+                type="text"
+                id="children_count"
+                className="text-center w-14 h-6"
+                readOnly
+              />
               <button
                 type="button"
+                onClick={() => {
+                  if (children) {
+                    dispatch({ type: 'DECREASE_CHILDREN' });
+                  }
+                }}
                 className="w-6 h-6 border border-zinc-400 text-zinc-700 rounded bg-white inline-flex items-center justify-center hover:bg-zinc-700 hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
