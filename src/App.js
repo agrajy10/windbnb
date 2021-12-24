@@ -9,7 +9,7 @@ import AppContext from './context/context';
 import { fetchStays } from './actions/actions';
 
 function App() {
-  const { isLoading, error, isModalOpen, dispatch, stays } = useContext(AppContext);
+  const { isLoading, error, isModalOpen, dispatch, filteredStays } = useContext(AppContext);
 
   useEffect(() => {
     const getStays = async () => {
@@ -30,12 +30,12 @@ function App() {
       <main className="py-4 md:py-14">
         <div className="flex items-center justify-between gap-4 mb-9">
           <h1 className="text-lg md:text-2xl font-bold text-zinc-800">Stays in Finland</h1>
-          <span className="text-sm font-medium text-zinc-600">+12 stays</span>
+          <span className="text-sm font-medium text-zinc-600">{filteredStays.length} stays</span>
         </div>
 
         {!isLoading ? (
           !error ? (
-            <StaysGrid stays={stays} />
+            <StaysGrid stays={filteredStays} />
           ) : (
             <p className="bg-red-100 border border-red-600 text-red-600 rounded px-4 py-2 font-medium">
               {error}
