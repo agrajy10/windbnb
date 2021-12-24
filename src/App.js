@@ -13,11 +13,18 @@ function App() {
 
   useEffect(() => {
     const getStays = async () => {
-      const data = await fetchStays();
-      dispatch({
-        type: 'SET_STAYS',
-        payload: data
-      });
+      const [data, errorMsg] = await fetchStays();
+      if (errorMsg) {
+        dispatch({
+          type: 'SET_ERROR',
+          payload: errorMsg
+        });
+      } else {
+        dispatch({
+          type: 'SET_STAYS',
+          payload: data
+        });
+      }
     };
 
     getStays();
@@ -33,17 +40,20 @@ function App() {
           <span className="text-sm font-medium text-zinc-600">{filteredStays.length} stays</span>
         </div>
 
-        {!isLoading ? (
-          !error ? (
-            <StaysGrid stays={filteredStays} />
-          ) : (
-            <p className="bg-red-100 border border-red-600 text-red-600 rounded px-4 py-2 font-medium">
+        {isLoading && <p className="text-xl text-center">Loading....</p>}
+
+        {!isLoading &&
+          (error ? (
+            <p className="bg-red-100 border border-red-600 text-red-600 text-center rounded-2xl px-4 py-2 font-medium">
               {error}
             </p>
-          )
-        ) : (
-          <p className="text-xl text-center">Loading....</p>
-        )}
+          ) : filteredStays.length > 0 ? (
+            <StaysGrid stays={filteredStays} />
+          ) : (
+            <p className="px-4 py-2 text-xl bg-blue-100 border border-blue-600 text-blue-600 rounded-2xl font-medium text-center">
+              No stays available
+            </p>
+          ))}
       </main>
 
       <Footer />

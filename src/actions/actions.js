@@ -1,7 +1,12 @@
+import axios from 'axios';
+
 export const fetchStays = async () => {
-  const response = await fetch('http://localhost:5000/stays');
-  const data = await response.json();
-  return data;
+  try {
+    const { data } = await axios.get('http://localhost:5000/stays');
+    return [data, null];
+  } catch (error) {
+    return [null, error.message];
+  }
 };
 
 export const filterStays = (stays, city, country, adults, children) => {
