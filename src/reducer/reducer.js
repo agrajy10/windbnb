@@ -16,6 +16,10 @@ const reducer = (state, action) => {
       return { ...state, children: state.children - 1 };
     case 'SET_LOCATION':
       return { ...state, city: action.payload.city, country: action.payload.country };
+    case 'OPEN_LOCATIONS':
+      return { ...state, isLocationsOpen: true, isGuestsOpen: false };
+    case 'OPEN_GUESTS':
+      return { ...state, isLocationsOpen: false, isGuestsOpen: true };
     default:
       return state;
   }

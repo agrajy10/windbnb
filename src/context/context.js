@@ -12,7 +12,9 @@ export const AppProvider = ({ children }) => {
     adults: 0,
     children: 0,
     city: '',
-    country: ''
+    country: '',
+    isLocationsOpen: true,
+    isGuestsOpen: false
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
