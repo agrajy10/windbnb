@@ -8,11 +8,11 @@
 
 <div align="center">
   <h3>
-    <a href="https://https://windbnb-agrajy10.netlify.app/">
+    <a href="https://windbnb-agrajy10.netlify.app/">
       Demo
     </a>
     <span> | </span>
-    <a href="https://https://devchallenges.io/solutions/3Il0PFTVF6Zh7LcMxTmf">
+    <a href="https://devchallenges.io/solutions/3Il0PFTVF6Zh7LcMxTmf">
       Solution
     </a>
     <span> | </span>
@@ -34,7 +34,7 @@
 
 ## Overview
 
-<a href="https://https://windbnb-agrajy10.netlify.app/" target="_blank">
+<a href="https://windbnb-agrajy10.netlify.app/" target="_blank">
       You can check demo here
     </a>
 
