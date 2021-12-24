@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import './css/main.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -6,29 +6,9 @@ import StaysGrid from './components/StaysGrid';
 import SearchModal from './components/SearchModal';
 import SearchForm from './components/SearchForm';
 import AppContext from './context/context';
-import { fetchStays } from './actions/actions';
 
 function App() {
-  const { isLoading, error, isModalOpen, dispatch, filteredStays } = useContext(AppContext);
-
-  useEffect(() => {
-    const getStays = async () => {
-      const [data, errorMsg] = await fetchStays();
-      if (errorMsg) {
-        dispatch({
-          type: 'SET_ERROR',
-          payload: errorMsg
-        });
-      } else {
-        dispatch({
-          type: 'SET_STAYS',
-          payload: data
-        });
-      }
-    };
-
-    getStays();
-  }, []);
+  const { isModalOpen, dispatch, filteredStays } = useContext(AppContext);
 
   return (
     <div className="max-w-7xl mx-auto px-3">
@@ -40,20 +20,13 @@ function App() {
           <span className="text-sm font-medium text-zinc-600">{filteredStays.length} stays</span>
         </div>
 
-        {isLoading && <p className="text-xl text-center">Loading....</p>}
-
-        {!isLoading &&
-          (error ? (
-            <p className="bg-red-100 border border-red-600 text-red-600 text-center rounded-2xl px-4 py-2 font-medium">
-              {error}
-            </p>
-          ) : filteredStays.length > 0 ? (
-            <StaysGrid stays={filteredStays} />
-          ) : (
-            <p className="px-4 py-2 text-xl bg-blue-100 border border-blue-600 text-blue-600 rounded-2xl font-medium text-center">
-              No stays available
-            </p>
-          ))}
+        {filteredStays.length > 0 ? (
+          <StaysGrid stays={filteredStays} />
+        ) : (
+          <p className="px-4 py-2 text-xl bg-blue-100 border border-blue-600 text-blue-600 rounded-2xl font-medium text-center">
+            No stays available
+          </p>
+        )}
       </main>
 
       <Footer />

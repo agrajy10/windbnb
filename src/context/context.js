@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
 import { createContext, useReducer } from 'react';
 import reducer from '../reducer/reducer';
+import data from '../stays.json';
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const initialState = {
-    stays: [],
-    filteredStays: [],
-    isLoading: true,
-    error: '',
+    stays: data,
+    filteredStays: data,
     isModalOpen: false,
     adults: 0,
     children: 0,
